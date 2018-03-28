@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="国际惯例 Hello World !">
+<meta name="description" content="antd中babel-plugin-import插件在create-react-app中失效按照antd第一篇的介绍设置antd按需加载，需要引入babel-plugin-import插件，然后在.babelrc中设置 // .babelrc or babel-loader option {   &amp;quot;plugins&amp;quot;: [     [&amp;quot;import&amp;quot;, { &amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://lispself.com/2017/09/14/hello-world/index.html">
+<meta property="og:title" content="关于后台管理系统所遇到的一些问题">
+<meta property="og:url" content="http://lispself.com/2018/03/28/about-oms/index.html">
 <meta property="og:site_name" content="尘封">
-<meta property="og:description" content="国际惯例 Hello World !">
+<meta property="og:description" content="antd中babel-plugin-import插件在create-react-app中失效按照antd第一篇的介绍设置antd按需加载，需要引入babel-plugin-import插件，然后在.babelrc中设置 // .babelrc or babel-loader option {   &amp;quot;plugins&amp;quot;: [     [&amp;quot;import&amp;quot;, { &amp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-23T15:47:09.960Z">
+<meta property="og:updated_time" content="2018-03-28T14:59:16.187Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="国际惯例 Hello World !">
+<meta name="twitter:title" content="关于后台管理系统所遇到的一些问题">
+<meta name="twitter:description" content="antd中babel-plugin-import插件在create-react-app中失效按照antd第一篇的介绍设置antd按需加载，需要引入babel-plugin-import插件，然后在.babelrc中设置 // .babelrc or babel-loader option {   &amp;quot;plugins&amp;quot;: [     [&amp;quot;import&amp;quot;, { &amp;">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://lispself.com/2017/09/14/hello-world/"/>
+  <link rel="canonical" href="http://lispself.com/2018/03/28/about-oms/"/>
 
 
 
 
 
-  <title>Hello World | 尘封</title>
+  <title>关于后台管理系统所遇到的一些问题 | 尘封</title>
   
 
 
@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lispself.com/2017/09/14/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/03/28/about-oms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lisp">
@@ -269,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">关于后台管理系统所遇到的一些问题</h1>
         
 
         <div class="post-meta">
@@ -281,8 +281,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-14T00:16:15+08:00">
-                2017-09-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T22:35:19+08:00">
+                2018-03-28
               </time>
             
 
@@ -291,6 +291,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -319,9 +341,62 @@
       
 
       
-        <h2 id="国际惯例"><a href="#国际惯例" class="headerlink" title="国际惯例"></a>国际惯例</h2><blockquote>
-<font color="#0099ff">Hello World !</font></blockquote>
+        <h2 id="antd中babel-plugin-import插件在create-react-app中失效"><a href="#antd中babel-plugin-import插件在create-react-app中失效" class="headerlink" title="antd中babel-plugin-import插件在create-react-app中失效"></a>antd中<code>babel-plugin-import</code>插件在<code>create-react-app</code>中失效</h2><p>按照antd第一篇的介绍设置antd按需加载，需要引入<code>babel-plugin-import</code>插件，然后在.babelrc中设置</p>
+<pre><code>// .babelrc or babel-loader option
+{
+  &quot;plugins&quot;: [
+    [&quot;import&quot;, { &quot;libraryName&quot;: &quot;antd&quot;, &quot;libraryDirectory&quot;: &quot;es&quot;, &quot;style&quot;: &quot;css&quot; }] // `style: true` 会加载 less 文件
+  ]
+}
+</code></pre><p>但是，这样设置后还是需要引入样式</p>
+<pre><code>import &apos;antd/dist/antd.css&apos;;  // or &apos;antd/dist/antd.less&apos;
+</code></pre><p>这个让我很尴尬，后面我查了一下stackoverflow，发现在webpack.config.dev.js中的</p>
+<pre><code>// Process JS with Babel.
+{
+  test: /\.(js|jsx|mjs)$/,
+  include: paths.appSrc,
+  loader: require.resolve(&apos;babel-loader&apos;),
+  options: {
 
+    // This is a feature of `babel-loader` for webpack (not Babel itself).
+    // It enables caching results in ./node_modules/.cache/babel-loader/
+    // directory for faster rebuilds.
+    cacheDirectory: true,
+    plugins: [[&quot;import&quot;, { libraryName: &quot;antd&quot;, style: &quot;css&quot;}]]
+  },
+</code></pre><p>这块设置<font color="#09f">plugins: [[“import”, { libraryName: “antd”, style: “css”}]]</font>，这样就解决了在create-react-app中antd按需加载的问题。</p>
+<h2 id="create-react-app中使用scss"><a href="#create-react-app中使用scss" class="headerlink" title="create-react-app中使用scss"></a><code>create-react-app</code>中使用scss</h2><p>首先，使用scss需要引用node-sass,sass-loader,css-loader,style-loader</p>
+<pre><code>yarn add node-sass
+yarn add sass-loader
+yarn add css-loader
+yarn add style-loader
+</code></pre><p>同时还需要引用file-loader（因为create-react-app中已经引入了file-loader，所以不需要再次添加），在webpack.config.dev.js中module的格式为：</p>
+<pre><code>{
+  test: /\.scss$/,
+  loader: [
+    require.resolve(&apos;style-loader&apos;),
+    require.resolve(&apos;css-loader&apos;),
+    require.resolve(&apos;sass-loader&apos;),
+  ]
+}
+</code></pre><p>除了这样引用外，还需要在下面的这块添加上<code>/\.scss$/</code>才能生效</p>
+<pre><code>// &quot;file&quot; loader makes sure those assets get served by WebpackDevServer.
+// When you `import` an asset, you get its (virtual) filename.
+// In production, they would get copied to the `build` folder.
+// This loader doesn&apos;t use a &quot;test&quot; so it will catch all modules
+// that fall through the other loaders.
+{
+  // Exclude `js` files to keep &quot;css&quot; loader working as it injects
+  // its runtime that would otherwise processed through &quot;file&quot; loader.
+  // Also exclude `html` and `json` extensions so they get processed
+  // by webpacks internal loaders.
+  exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.scss$/],
+  loader: require.resolve(&apos;file-loader&apos;),
+  options: {
+    name: &apos;static/media/[name].[hash:8].[ext]&apos;,
+  },
+}
+</code></pre>
       
     </div>
     
@@ -345,15 +420,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/03/25/yarn/" rel="next" title="yarn-包管理工具">
+                <i class="fa fa-chevron-left"></i> yarn-包管理工具
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/22/hexo-config-question/" rel="prev" title="搭建hexo平台遇到的坑">
-                搭建hexo平台遇到的坑 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -476,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#国际惯例"><span class="nav-number">1.</span> <span class="nav-text">国际惯例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#antd中babel-plugin-import插件在create-react-app中失效"><span class="nav-number">1.</span> <span class="nav-text">antd中babel-plugin-import插件在create-react-app中失效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#create-react-app中使用scss"><span class="nav-number">2.</span> <span class="nav-text">create-react-app中使用scss</span></a></li></ol></div>
             
 
           </div>
