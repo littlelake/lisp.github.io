@@ -12,3 +12,7 @@
 ## 2018-03-28
 
 - [关于后台管理系统所遇到的一些问题](http://lisp22.top/2018/03/28/about-oms/)
+
+## 2018-04-05
+
+- [webpack之html-webpack-plugin](http://lisp22.top/2018/04/05/html-webpack-plugin/)
