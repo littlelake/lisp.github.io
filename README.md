@@ -16,3 +16,8 @@
 ## 2018-04-05
 
 - [webpack之html-webpack-plugin](http://lisp22.top/2018/04/05/html-webpack-plugin/)
+
+## 2018-04-06
+
+- [webpack之resolve](http://lisp22.top/2018/04/06/webpack-resolve/)
+- [webpack之module](http://lisp22.top/2018/04/06/webpack-module/)
