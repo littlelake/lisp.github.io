@@ -394,7 +394,43 @@ export default function promiseMiddleware() {
     return isPromise(action) ? action.then(dispatch) : next(action);
   }
 }
-</code></pre><h3 id="Store-Enhancer"><a href="#Store-Enhancer" class="headerlink" title="Store Enhancer"></a>Store Enhancer</h3>
+
+// 增强版
+export default function promiseMiddleware() {
+  return ({dispatch}) =&gt; (next) =&gt; (action) =&gt; {
+    const { types, promise. ...rest } = action;
+    if(!isPromise(action) || !(types &amp;&amp; types.length === 3)) {
+      next(action);
+    }
+
+    const [ PENDING, DONE, FAIL ] = types;
+    dispatch({...rest, type: PENDING});
+    return action.promise.then(
+      (result) =&gt; dispatch({...rest, result, type: DONE}),
+      (error) =&gt; dispatch({...rest, error, type: FAIL})
+    )
+  }
+}
+</code></pre><p>所以在调用promiseMiddleware的时候需要传入的是一个对象<br>export const XX = (args) =&gt; {<br>  return {<br>    promise: …,<br>    types: [FETCH_START, FETCH_SUCCESS, FETCH_FAIL]<br>  }<br>}</p>
+<h3 id="Store-Enhancer"><a href="#Store-Enhancer" class="headerlink" title="Store Enhancer"></a>Store Enhancer</h3><p>中间件可以用来增强redux store的dispatch方法，但也仅限于dispatch方法。如果想要更深层次的增强，那么就需要使用store enhancer。</p>
+<p>store enhancer主要用于增强store的功能，一个什么都不做的store enhancer如下：</p>
+<pre><code>const doNothingEnhancer = (createStore) =&gt; (reducer, proloadedState, enhancer) =&gt; {
+  const store = createStore(reducer, proloadedState, enhancer);
+  return store;
+}
+</code></pre><p>store enhancer的基本格式是传递一个createStore为参数，然后去改写原有的store。比如增加一个logEnhancer，代码如下：</p>
+<pre><code>const logEnhancer = (createStore) =&gt; (reducer, proloadedState, enhancer) =&gt; {
+  const store = createStore(reducer, proloadedState, enhancer);
+
+  const originalDispatch = store.dispatch;
+  store.dispatch =&gt; (action) =&gt; {
+    console.log(&apos;dispatch action: &apos; + action);
+    originalDispatch(action);
+  }
+
+  return store;
+}
+</code></pre>
           
         
       
