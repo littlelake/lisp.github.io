@@ -252,6 +252,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/05/23/2018-05-22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lisp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="尘封">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/23/2018-05-22/" itemprop="url">关于今天联调接口的感悟</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T00:28:35+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天进行验收，感觉没有想象中的那么顺利，在跑整个流程的时候还是有一些自己没有考虑到的东西，总体来说有如下几点：</p>
+<ol>
+<li>没有弄清楚要传的字段，导致展示的时候出错，可能这算是粗心，将另外的id以为了是要传的id，后面还是一起排查才找到出错的地方。</li>
+<li>流程中有些操作需要考虑的结果没有考虑到，比如说A-&gt;B时需要有一个表单提交，按理说在B-&gt;A页面进行回退的时候需要将表单里面的字段设为初始值或是为空，这样才算是更合理的回退。</li>
+<li>隐藏流程，今天就踩了这个坑，流程图里面只写了“版本状态”的流程图，我以为只需要联调产品管理那块，结果后面验收的时候告诉我还有功能管理那块也是版本管理的流程，这个时候就有点懵逼了。</li>
+</ol>
+<p>总的来说这次联调没有到自己很差的底部，但有些可以避免的bug还是由于自己考虑不周而出现了。在这次的总结中，我觉得自己下次在进行接口联调的时候需要注意以下几点：</p>
+<ul>
+<li>写代码之前搞清楚流程和会出现的一些异常情况，重点是流程，清除流程后写代码事半功倍。</li>
+<li>做完一个接口联调之后自己测一下，而且考虑下会出现的异常和问题</li>
+<li>在做到不出大bug的情况下提升一下自己的开发速度，重点还是能够保质保量。</li>
+<li>优化自己的代码，这点在后期工作中很重要。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/05/20/driving-subject-three-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1900,181 +2054,6 @@ use: [
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/04/06/webpack-resolve/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lisp">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="尘封">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/06/webpack-resolve/" itemprop="url">webpack之resolve</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-06T10:44:48+08:00">
-                2018-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>resolve主要设置模块如何被解析</p>
-<h3 id="resolve常用配置"><a href="#resolve常用配置" class="headerlink" title="resolve常用配置"></a>resolve常用配置</h3><pre><code>resolve: {
-  alias: { // 引用路径简化
-    utils: path.resolve(__dirname, &apos;./src/utils&apos;)
-  },
-  modules: [ // 设置搜索路径
-    path.resolve(__dirname, &apos;node_modules&apos;),
-    &apos;node_modules&apos;
-  ],
-  extensions: [&apos;.wasm&apos;, &apos;.mjs&apos;, &apos;.js&apos;, &apos;.json&apos;, &apos;.jsx&apos;] // 模糊匹配后缀名
-}
-</code></pre><h3 id="常用的一些配置"><a href="#常用的一些配置" class="headerlink" title="常用的一些配置"></a>常用的一些配置</h3><h4 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h4><p>alias的主要作用是简化我们import时写的路径，比如我们要引入utils中的ajax.js，那么我们需要写很长一段相对路径，如果用alias的话，那么我们可以这样配置</p>
-<pre><code>alias: {
-  utils: path.resolve(__dirname, &apos;./src/utils&apos;)
-}
-</code></pre><p>我们本来是这样引用的<code>import ajax from &#39;./src/utils/ajax.js&#39;</code>，用了alias之后就直接这样用就可以了<code>import ajax from &#39;utils/ajax.js&#39;</code><br>这个是模糊配置，如果需要精准配置的话则在key的后面加上<code>$</code><br>eg：</p>
-<pre><code>alias: {
-  utils$: path.resolve(__dirname, &apos;./src/utils/ajax.js&apos;)
-}
-</code></pre><p>访问的时候只需要<code>import ajax from &#39;utils&#39;</code>就可以了。</p>
-<h4 id="modules"><a href="#modules" class="headerlink" title="modules"></a>modules</h4><p>modules主要是用于路径搜索，默认配置是</p>
-<pre><code>modules: [&apos;node_modules&apos;]
-</code></pre><p>如果你知道你的node_modules在哪个路径下的话可以让搜索更加简化<br>eg:</p>
-<pre><code>modules: [
-  path.resolve(__dirname, &apos;node_modules&apos;), // 这个设置在前面的话会优先去检索这个路径
-  &apos;node_modules&apos;
-]
-</code></pre><h4 id="extensions"><a href="#extensions" class="headerlink" title="extensions"></a>extensions</h4><p>extensions主要用于模糊匹配文件的后缀名，检索的顺序是从前到后</p>
-<p>如果设置中加了<code>.js</code>,那么在import的时候本来这样写的<code>import ajax from &#39;utils/ajax.js&#39;</code>，可以改为这样<code>import ajax from &#39;utils/ajax&#39;</code></p>
-<p>eg:</p>
-<pre><code>extensions: [&apos;.wasm&apos;, &apos;.mjs&apos;, &apos;.js&apos;, &apos;.json&apos;, &apos;.jsx&apos;]
-</code></pre><h4 id="aliasFields"><a href="#aliasFields" class="headerlink" title="aliasFields"></a>aliasFields</h4><p>指定一个字段，例如 browser，根据此规范进行解析。<font color="#09f">这个我没有搞懂</font></p>
-<p>eg:</p>
-<pre><code>aliasFields: [&quot;browser&quot;]
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2125,7 +2104,7 @@ use: [
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
