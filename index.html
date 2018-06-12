@@ -252,6 +252,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/06/12/upload-and-export/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lisp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="尘封">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/upload-and-export/" itemprop="url">上传与下载</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T23:56:49+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h3><p>上传我借鉴的是ant-design的组件进行上传的，具体源代码还没有参考，这块留起来后续补充。</p>
+<h4 id="ant-design组件"><a href="#ant-design组件" class="headerlink" title="ant-design组件"></a>ant-design组件</h4><p><a href="https://ant.design/components/upload-cn/" target="_blank" rel="external">Upload</a>组件</p>
+<h4 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h4><blockquote>
+<p>后续补充</p>
+</blockquote>
+<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>下载我是参考了<a href="https://www.cnblogs.com/cynthia-wuqian/p/7927621.html" target="_blank" rel="external">这边文章</a>，因为下载时返回的数据是一串乱码，所以就借鉴了这边文章缩写的，需要在axios中加入<code>responseTtpe: &#39;arraybuffer&#39;</code>，然后用了blob，具体代码如下：</p>
+<pre><code>axios.post(url, {...params}, {
+  header: {
+    // 这里是header设置
+  },
+  responseType: &apos;arraybuffer&apos;
+}).then((res) =&gt; {
+  let blob = new Blob([res.data], {type: &apos;application/vnd.ms-excel&apos;});
+  let objectUrl = URL.createObjectUrl(blob);
+  window.location.href = objectUrl;
+}).catch((err) =&gt; {})
+</code></pre><blockquote>
+<p>注：这里必须引用<code>responseTtpe: &#39;arraybuffer&#39;</code>，不然的话还是会是乱码</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/05/30/node-study/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1823,168 +1983,6 @@ export default function promiseMiddleware() {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/04/17/anyproxy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lisp">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="尘封">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/17/anyproxy/" itemprop="url">AnyProxy - 代理服务器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T22:14:16+08:00">
-                2018-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>AnyProxy是一个基于NodeJS的，可供插件配置的HTTP/HTTPS代理服务器。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
-<li>首先需要node环境，这个可以自行去<code>https://nodejs.org/en/</code>官网去一步一步操作。</li>
-<li>安装好node后，需要安装下淘宝镜像<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code>，因为我用npm怎么也安装不上，后面我看了别人的回答，说是用cnpm去进行安装，结果一下子就安装成功了。</li>
-<li>安装好cnpm后，然后全局安装anyproxy, <code>cnpm install -g anyproxy</code></li>
-<li>然后在控制台输出<code>anyproxy</code>进行启动，然后在web界面上访问<a href="http://127.0.0.1:8002" target="_blank" rel="external">http://127.0.0.1:8002</a>，<br>web端配置宣告成功。anyproxy的默认端口是8001，如果想修改其端口的话可以执行<code>anyproxy --port 1080</code>。</li>
-</ul>
-<h3 id="手机端配置（http）"><a href="#手机端配置（http）" class="headerlink" title="手机端配置（http）"></a>手机端配置（http）</h3><p>刚开始的时候我以为这样配置了在pc端就能进行接口的抓取，后面试了很久才想明白，pc端不是chrome就可以直接看吗？要这个干嘛。<br>所以后面看了别人解说移动端配置的方法。</p>
-<ul>
-<li>首先将pc端和手机端处在同一wifi环境下（好像我pc端直接连线也可以，所以不同wifi环境应该可是可以的）</li>
-<li>手机端在当前wifi环境下设置代理，代理ip为当前pc电脑的ip地址，端口为你设置的端口，默认情况下为8001，如果你通过<code>anyproxy --port 1080</code>这样设置后，那么端口号就为1080，设置完之后就可以进行抓包了。</li>
-</ul>
-<h3 id="https抓包"><a href="#https抓包" class="headerlink" title="https抓包"></a>https抓包</h3><p>https下配置相对来说会麻烦一点，这里我只介绍IOS下怎么配置（没有安卓机）。</p>
-<ul>
-<li>首先运行<code>anyproxy</code>，通过<code>http://127.0.0.1:8002</code>打开抓包界面，然后在左边导航栏有一个RootCA的选项，打开后有一个Download的按钮，点击后进行下载，然后运行它。运行的时候需要注意在第二步中<code>导入证书</code>时选择第二个选项，然后浏览要使用的证书，然后选择第二个<code>受信任的根证书颁发机构</code>，然后选择后后面就是傻瓜式操作了。</li>
-<li>pc端安装完证书后，就是手机端安装，一开始按照网上说的扫<code>download</code>按钮上的二维码，但是一直不成功，后面搜了一下后可以直接通过<code>http://your_mac_ip:8002/fetchCrtFile</code>方式进行安装（应该是只适合IOS把），安装过程很顺利，一步步来就可以了。</li>
-<li>到此pc和手机端的证书都安装完了，最后进行https抓包时启动要用<code>anyproxy --intercept</code></li>
-</ul>
-<font color="#09f">注：如果在访问过程中手机浏览器表示不是受信任的网站，直接访问就可以了，不用管他</font>
-
-<p>后续还需要研究的是怎样将其配置在局域网中，让多台机可以一起访问来进行抓包。然后就是自定义rule配置这块还没有学习。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2035,7 +2033,7 @@ export default function promiseMiddleware() {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
