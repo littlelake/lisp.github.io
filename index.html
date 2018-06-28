@@ -252,6 +252,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/06/28/react-native-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lisp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="尘封">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/28/react-native-start/" itemprop="url">简单运行一个react-native项目</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-28T23:58:02+08:00">
+                2018-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>不按照react-native中文网上的来的话，只需要五步就可以完成react-native的demo运行。</p>
+<ol>
+<li>下载并安装jdk，以安装jdk8为例</li>
+<li>配置环境变量<br>（1）配置android的环境变量<br>ANDROID_HOME   —   C:\Users\cyy\AppData\Local\Android\Sdk<br>（2）配置java的环境变量<br>JAVA_HOME   —   C:\Program Files\Java\jdk1.8.0_171<br>（3）在path中配置platform-tools的环境变量<br>PATH   —   C:\Users\cyy\AppData\Local\Android\Sdk\platform-tools</li>
+<li>下载android-studio，解压后点击android-studio\bin\studio.exe，然后在android-studio中配置jdk可以根据中文网上的说明进行配置</li>
+<li>运行device，点击android-studio右上角的AVD Manager，选择适当的手机模拟器设备，一般参见“Nexus 5X API 24” - “android 7.0”，然后点击运行就可以了。中文网上面用Genymotion 使用起来比较繁琐</li>
+<li>初始化项目<br>（1）react-native init android-init-name<br>（2）cd android-init-name<br>（3）react-native run-android</li>
+</ol>
+<p>另外，如果一个项目在react-native run-android运行起来的时候报错，可以试着删除“android\build”和“android\app\build”后再运行。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/06/12/upload-and-export/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1757,237 +1907,11 @@ const myReqInterceptor = axios.interceptor.request.use((config) =&gt; {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/04/21/redux-middleware-and-enhancer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lisp">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="尘封">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/21/redux-middleware-and-enhancer/" itemprop="url">Redux中间件和Store Enhancer</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T10:55:59+08:00">
-                2018-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Redux中间件"><a href="#Redux中间件" class="headerlink" title="Redux中间件"></a>Redux中间件</h3><p>redux的运作是属于同步进行的，但我们在处理数据接口的时候，往往需要异步的方式去完成，这个时候我们引用一些中间件。但在redux的流程中一般什么时候引用会比较合适呢？</p>
-<p>redux的一般使用流程是<code>dispatch -&gt; action -&gt; reducer -&gt; store</code>，中间件的使用在action与reducer之间是最合适的，所以使用时一般也是在这两者之间进行插入。</p>
-<p>那一般怎么去区分从action后是直接进入到中间件中执行而不是到了reducer呢？ 一般情况下中间件都是一个函数，所以判断dispatch返回的是函数还是对象来决定进入的中间件还是reducer中。</p>
-<h4 id="redux-thunk"><a href="#redux-thunk" class="headerlink" title="redux-thunk"></a>redux-thunk</h4><p>redux-thunk是常用的处理异步的中间件，其源代码为：</p>
-<pre><code>function thunkMiddleware(extraArguments) {
-  return ({dispatch, getState}) =&gt; (next) =&gt; (action) =&gt; {
-    if(typeof action === &apos;function&apos;) {
-      action(dispatch, getState, extraArgumanes);
-    }
-    // 抛给下一个中间件进行处理
-    next(action);
-  }
-}
-
-const thunk = thunkMiddleware();
-export default thunk;
-</code></pre><p>redux-thunk中源代码很简单，就是判断action的类型是否为function，如果是的则执行，不是则抛给下一个中间件进行处理。其中书写的方式采用了函数式编程的写法。</p>
-<h4 id="使用中间件"><a href="#使用中间件" class="headerlink" title="使用中间件"></a>使用中间件</h4><p>使用中间件我们引用了redux的applyMiddleware这个方法，具体的用法有两种：</p>
-<pre><code>// 方法一
-import { createStore, applyMiddleware } from &apos;redux;
-import thunkMiddleware from &apos;redux-thunk&apos;;
-
-const configureStore = applyMiddleware(thunkMiddleware)(createStore);
-const store = configureStore(reducer, initialState);
-</code></pre><p>该方法是将thunkMiddleware作为参数，然后得到一个新的函数，得到的函数为一个store enhancer，然后将createStore作为一个参数获得一个增强版的store。但是该方式只能传一个中间件，对于使用多个中间件的方式不太适用。</p>
-<pre><code>// 方法二
-import { createStore, applyMiddleware, compose } from &apos;redux&apos;;
-import thunkMiddleware from &apos;redux-thunk&apos;;
-
-const win = window;
-const storeEnhancer = compose(
-  applyMiddleware(...middlewares),
-  (win &amp;&amp; win.devToolsExtension) ? win.devToolsExtension() : f =&gt; f;
-);
-const store = createStore(reducer, initialState, storeEnhancer);
-</code></pre><p>方法二采用了compose的方式去整合多个中间件，而且applyMiddleware必须放在第一的位置，是为了能先让异步的中间件先处理，然后再处理其他的。createStore有三个参数，第一个代表着reducer，第二个则是默认的state，第三个参数则是增强器，用于增强store的功能。</p>
-<h4 id="自定义中间件"><a href="#自定义中间件" class="headerlink" title="自定义中间件"></a>自定义中间件</h4><p>自定义中间件是同样需要遵循的方式为 retrun ({dispatch, getState?}) =&gt; (next) =&gt; (action) =&gt; next(action);</p>
-<p>我们可以开发一个Promise的中间件</p>
-<pre><code>// 简单版
-function isPromise(obj) {
-  // 判断是否有then方法
-  return obj &amp;&amp; typeof obj.then === &apos;function&apos;;
-}
-
-export default function promiseMiddleware() {
-  return ({dispatch}) =&gt; (next) =&gt; (action) =&gt; {
-    return isPromise(action) ? action.then(dispatch) : next(action);
-  }
-}
-
-// 增强版
-export default function promiseMiddleware() {
-  return ({dispatch}) =&gt; (next) =&gt; (action) =&gt; {
-    const { types, promise. ...rest } = action;
-    if(!isPromise(action) || !(types &amp;&amp; types.length === 3)) {
-      next(action);
-    }
-
-    const [ PENDING, DONE, FAIL ] = types;
-    dispatch({...rest, type: PENDING});
-    return action.promise.then(
-      (result) =&gt; dispatch({...rest, result, type: DONE}),
-      (error) =&gt; dispatch({...rest, error, type: FAIL})
-    )
-  }
-}
-</code></pre><p>所以在调用promiseMiddleware的时候需要传入的是一个对象<br>export const XX = (args) =&gt; {<br>  return {<br>    promise: …,<br>    types: [FETCH_START, FETCH_SUCCESS, FETCH_FAIL]<br>  }<br>}</p>
-<h3 id="Store-Enhancer"><a href="#Store-Enhancer" class="headerlink" title="Store Enhancer"></a>Store Enhancer</h3><p>中间件可以用来增强redux store的dispatch方法，但也仅限于dispatch方法。如果想要更深层次的增强，那么就需要使用store enhancer。</p>
-<p>store enhancer主要用于增强store的功能，一个什么都不做的store enhancer如下：</p>
-<pre><code>const doNothingEnhancer = (createStore) =&gt; (reducer, proloadedState, enhancer) =&gt; {
-  const store = createStore(reducer, proloadedState, enhancer);
-  return store;
-}
-</code></pre><p>store enhancer的基本格式是传递一个createStore为参数，然后去改写原有的store。比如增加一个logEnhancer，代码如下：</p>
-<pre><code>const logEnhancer = (createStore) =&gt; (reducer, proloadedState, enhancer) =&gt; {
-  const store = createStore(reducer, proloadedState, enhancer);
-
-  const originalDispatch = store.dispatch;
-  store.dispatch =&gt; (action) =&gt; {
-    console.log(&apos;dispatch action: &apos; + action);
-    originalDispatch(action);
-  }
-
-  return store;
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2033,7 +1957,7 @@ export default function promiseMiddleware() {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
