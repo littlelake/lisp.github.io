@@ -252,6 +252,312 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/11/03/mobx-study/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lisp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="尘封">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/03/mobx-study/" itemprop="url">mobx-study</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-03T23:53:35+08:00">
+                2018-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Mobx是一个功能强大，上手非常容易的状态管理工具。其他状态管理工具有Flux，redux，dva</p>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>mobx安装：<code>npm install mobx --save</code> 或 <code>yarn add mobx -S</code>，如果与react进行搭配使用的话，则需要安装mobx-react: <code>npm install mobx-react --save</code></p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>mobx支持单项数据流，也就是通过action去改变状态，然后状态的改变会更新所有受影响的视图。其中主要用到的几个要点有：</p>
+<blockquote>
+<p>abservable</p>
+</blockquote>
+<p>abservable定义状态为可观察状态，其数据结构不限定，可以是基本数据类型，也可以是引用类型。例如：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">inport &#123; observable &#125; from &apos;mobx&apos;;</div><div class="line"></div><div class="line">const appStore = abservable(&#123;</div><div class="line">  todos: []</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 或者使用装饰器形式展示</div><div class="line">@observable appStore = &#123;</div><div class="line">  todos: []</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</code></pre><blockquote>
+<p>action</p>
+</blockquote>
+<p>有了可观察的状态，那么就需要操作可观察状态的动作，action的作用就是为了改变状态的。同样也分为两种形式展示：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import &#123; action &#125; from &apos;mobx&apos;;</div><div class="line"></div><div class="line">appStore.resetTodos = action(function reset() &#123;</div><div class="line">  appStore.todos = [];</div><div class="line">&#125;);</div><div class="line"></div><div class="line">@action resetTodos() &#123;</div><div class="line">  appStore.todos = [];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><blockquote>
+<p>computed</p>
+</blockquote>
+<p>计算值(computed values)是可以根据现有的状态或其它计算值衍生出的值。如果任何影响计算值的值发生变化了，计算值将根据状态自动进行衍生。例如：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import &#123; computed &#125; from &apos;mobx&apos;;</div><div class="line"></div><div class="line">@computed get unfinishedTodos() &#123;</div><div class="line">  return this.props.appStore.filter((todo) =&gt; !todo.finished).length;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><blockquote>
+<p>autorun</p>
+<p>when</p>
+<p>reaction</p>
+<p>observer</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/07/15/driving-subject-three-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lisp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="尘封">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/15/driving-subject-three-2/" itemprop="url">科目三整体流程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-15T23:57:00+08:00">
+                2018-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/07/04/devtools/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1558,334 +1864,6 @@ const flat = inputAny =&gt;
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/05/04/adaptive/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lisp">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="尘封">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/04/adaptive/" itemprop="url">纯css实现移动端自适应</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T20:49:20+08:00">
-                2018-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="利用rem和vw来实现移动端自适应"><a href="#利用rem和vw来实现移动端自适应" class="headerlink" title="利用rem和vw来实现移动端自适应"></a>利用rem和vw来实现移动端自适应</h3><pre><code>// vm and rem
-$vm_fontsize: 75; // iPhone 6尺寸的根元素大小基准值
-$vm_design: 750;
-
-// rem 单位换算：定为 75px 只是方便运算，750px-75px、640-64px、1080px-108px，如此类推
-@function rem($px) {
-  @return ($px / $vm_fontsize) * 1rem;
-}
-
-// 根元素大小使用 vw 单位
-@function vm($px) {
-  @return ($px / ($vm_design / 2)) * 100vw;
-}
-
-// 全局设置html和body，限制元素的最大最小值
-html {
-  font-size: ($vm_fontsize / ($vm_design / 2)) * 100vw; // 同时，通过Media Queries 限制根元素最大最小值
-  @media screen and (max-width: 320px) {
-      font-size: 64px;
-  }
-  @media screen and (min-width: 540px) {
-      font-size: 108px;
-  }
-}
-
-// body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
-body {
-  max-width: 540px;
-  min-width: 320px;
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lispself.com/2018/04/26/surge/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lisp">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="尘封">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/26/surge/" itemprop="url">surge使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-26T22:47:26+08:00">
-                2018-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>一个免费托管静态资源的网站</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>npm i -g surge</code> or <code>cnpm i -g surge</code></p>
-<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>surge [options]</p>
-<p>一般情况下直接<code>surge</code>命令后按照他后续的操作就行了，<code>surge</code>后会让你设置一下邮箱和密码，然后就是你需要托管的文件夹，当这些完成之后，会给你生成一个<code>XX.surge.sh</code>的url地址，然后直接访问后就可以获取托管后的文件。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>优点就是可以将本地的代码托管到surge上去进行跨浏览器访问，这样省去了每次部署到线上的麻烦。</p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>好像暂时是不能进行跨域的</p>
-<h3 id="其他选项"><a href="#其他选项" class="headerlink" title="其他选项"></a>其他选项</h3><pre><code>-p, --project       要上传的静态文件所在路径 (默认是./)
--d, --domain        要上传到哪个域名，格式必须是 你想叫什么就叫什么.surge.sh (不填的话就默认随机生成.surge.sh)
--a, --add           添加协作者 (email 邮箱)
--r, --remove        移除协作者 (email 邮箱)
-</code></pre><h3 id="常用快捷命令"><a href="#常用快捷命令" class="headerlink" title="常用快捷命令"></a>常用快捷命令</h3><pre><code>surge 静态文件的路径 要上传到哪个域名
-</code></pre><h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3><pre><code>surge whoami        显示现在登录的是哪个帐号
-surge logout        退出登录
-surge login         登录帐号，只执行验证步骤
-surge list          显示属于你的所有域名
-surge teardown      删除属于你的指定域名
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1936,7 +1914,7 @@ surge teardown      删除属于你的指定域名
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
