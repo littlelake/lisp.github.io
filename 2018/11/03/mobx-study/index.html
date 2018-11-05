@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="尘封">
 <meta property="og:description" content="简介Mobx是一个功能强大，上手非常容易的状态管理工具。其他状态管理工具有Flux，redux，dva 基本用法安装mobx安装：npm install mobx --save 或 yarn add mobx -S，如果与react进行搭配使用的话，则需要安装mobx-react: npm install mobx-react --save 概念mobx支持单项数据流，也就是通过action去改变">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-03T16:50:28.151Z">
+<meta property="og:updated_time" content="2018-11-05T16:49:34.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mobx-study">
 <meta name="twitter:description" content="简介Mobx是一个功能强大，上手非常容易的状态管理工具。其他状态管理工具有Flux，redux，dva 基本用法安装mobx安装：npm install mobx --save 或 yarn add mobx -S，如果与react进行搭配使用的话，则需要安装mobx-react: npm install mobx-react --save 概念mobx支持单项数据流，也就是通过action去改变">
@@ -361,11 +361,18 @@
 <pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import &#123; computed &#125; from &apos;mobx&apos;;</div><div class="line"></div><div class="line">@computed get unfinishedTodos() &#123;</div><div class="line">  return this.props.appStore.filter((todo) =&gt; !todo.finished).length;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </code></pre><blockquote>
 <p>autorun</p>
+</blockquote>
+<p>当你想创建一个响应式函数，而该函数本身永远不会有观察者时，可以使用<code>mobx autorun</code>。这通常需要你从反应式代码桥接到命令式代码的情况。例如打印日志，持久化或是更新UI的情况。当使用<code>autorun</code>时，所提供的函数总是被触发一次，然后他的依赖关系每次触发时会再次被触发。</p>
+<p>传递给<code>autorun</code>的函数在调用后会接收一个参数，可用于在执行期间清理<code>autorun</code>。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var numbers = observable([1,2,3]);</div><div class="line">var sum = computed(() =&gt; numbers.reduce((a, b) =&gt; a + b, 0));</div><div class="line"></div><div class="line">var disposer = autorun(() =&gt; console.log(sum.get()));</div><div class="line">// 输出 &apos;6&apos;</div><div class="line">numbers.push(4);</div><div class="line">// 输出 &apos;10&apos;</div><div class="line"></div><div class="line">disposer();</div><div class="line">numbers.push(5);</div><div class="line">// 不会再输出任何值。`sum` 不会再重新计算。</div></pre></td></tr></table></figure>
+</code></pre><blockquote>
 <p>when</p>
 <p>reaction</p>
 <p>observer</p>
 </blockquote>
-
+<p><code>observer</code> 函数/装饰器可以用来将react组件转变为响应式组件。它用<code>mobx.autorun</code>来包装了组件的render函数以确保任何组件渲染中使用了数据变化时都可以强制刷新组件。<code>observer</code>是由单独的<code>mobx-react</code>包提供的。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">import &#123;observer&#125; from &quot;mobx-react&quot;;</div><div class="line"></div><div class="line">var timerData = observable(&#123;</div><div class="line">    secondsPassed: 0</div><div class="line">&#125;);</div><div class="line"></div><div class="line">setInterval(() =&gt; &#123;</div><div class="line">    timerData.secondsPassed++;</div><div class="line">&#125;, 1000);</div><div class="line"></div><div class="line">@observer class Timer extends React.Component &#123;</div><div class="line">    render() &#123;</div><div class="line">        return (&lt;span&gt;Seconds passed: &#123; this.props.timerData.secondsPassed &#125; &lt;/span&gt; )</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">ReactDOM.render(&lt;Timer timerData=&#123;timerData&#125; /&gt;, document.body);</div></pre></td></tr></table></figure>
+</code></pre>
       
     </div>
     
